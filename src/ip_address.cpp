@@ -30,8 +30,10 @@ ip_address::ip_address(const uint8_t (&v6)[16]) noexcept
 }
 
 ip_address::ip_address(const in6_addr &v6) noexcept
-    : ip_address(v6.__u6_addr.__u6_addr8)
-{ }
+    : version_(version_t::v6)
+{
+	memcpy(value.v6, v6.s6_addr, sizeof(v6.s6_addr));
+}
 
 ip_address::version_t ip_address::version() const noexcept { return version_; }
 

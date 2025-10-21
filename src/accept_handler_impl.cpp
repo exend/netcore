@@ -24,6 +24,7 @@ void accept_hndl_impl::handle(
 		hndl = reg.get_handler(socket.port());
 		if (!hndl)
 			return socket.close();
+		cancellation_token token = this->token;
 		exec->execute([=] {
 			hndl->handle(conn, token);
 		});
