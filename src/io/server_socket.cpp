@@ -9,6 +9,7 @@
 #include <unistd.h>
 #include <cerrno>
 #include <cstring>
+#include <mutex>
 #include <system_error>
 
 using namespace c357::net::core;
