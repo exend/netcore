@@ -7,12 +7,22 @@
 
 namespace c357::net::core {
 
+/// @brief Registry mapping ports to protocol handlers.
 class app_protocol_handler_registry final {
 public:
+	/// @brief Registers a protocol handler for a specific port.
 	void register_handler(uint16_t port, const app_proto_hndl_sptr &);
+
+	/// @brief Returns a handler associated with the given port.
 	app_proto_hndl_sptr get_handler(uint16_t port) const;
+
+	/// @brief Removes a handler for the given port.
 	void remove_handler(uint16_t port);
+
+	/// @brief Returns all registered ports.
 	std::vector<uint16_t> ports() const;
+
+	/// @brief Removes all registered handlers.
 	void clear() noexcept;
 
 private:

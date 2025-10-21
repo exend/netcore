@@ -198,7 +198,7 @@ void server_socket::wakeup()
 	}
 }
 
-void server_socket::accept_loop(shared_ptr<accept_handler> phndl)
+void server_socket::accept_loop(std::shared_ptr<accept_handler> phndl)
 {
 	accept_loop_finished = false;
 	stop = false;

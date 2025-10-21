@@ -12,19 +12,34 @@ namespace c357::net::core {
 class connection;
 class accept_handler;
 
-class server_socket final {
+/// @brief TCP server socket accepting incoming connections.
+class server_socket {
 public:
 	class error;
 
-	server_socket(uint16_t port);
 	server_socket(const server_socket &) = delete;
+
+	/// @brief Constructs a listening socket bound to the given port.
+	server_socket(uint16_t port);
+
 	virtual ~server_socket();
+
 	server_socket &operator=(const server_socket &) = delete;
+
+	/// @brief Returns the port the socket is bound to.
 	uint16_t port() const noexcept;
+
+	/// @brief Closes the socket.
 	virtual void close();
+
+	/// @brief Returns true if the socket is closed.
 	bool is_closed() const noexcept;
+
+	/// @brief Waits for and accepts a single incoming connection.
 	std::shared_ptr<connection> accept();
-	void start_accepting(std::shared_ptr<accept_handler> hndl_ptr);
+
+	/// @brief Starts asynchronous accepting with a handler.
+	void start_accepting(std::shared_ptr<accept_handler> hndl);
 
 private:
 	static const int closed;

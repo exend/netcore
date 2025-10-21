@@ -8,12 +8,19 @@ namespace c357::net::core {
 
 class connection;
 
+/// @brief Interface for handling application-level protocol logic.
 struct app_protocol_handler {
 	virtual ~app_protocol_handler() = default;
+
+	/// @brief Called to process a connection.
+	/// @param conn Connection instance.
+	/// @param token Cancellation token to control operation.
 	virtual void handle(
-	    std::shared_ptr<connection>,
-	    base::concurrent::cancellation_token)
+	    std::shared_ptr<connection> conn,
+	    base::concurrent::cancellation_token token)
 	    = 0;
+
+	/// @brief Called when an exception occurs.
 	virtual void handle(std::exception_ptr) = 0;
 };
 

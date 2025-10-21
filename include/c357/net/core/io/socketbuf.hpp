@@ -6,17 +6,26 @@
 
 namespace c357::net::core {
 
+/// @brief Stream buffer for reading and writing through a socket.
 class socketbuf : public std::streambuf {
 public:
 	class error;
 
+	/// @brief Constructs a buffer bound to a socket descriptor.
 	explicit socketbuf(int sockfd);
+
 	socketbuf(const socketbuf &other) = delete;
 	socketbuf(socketbuf &&other);
+
 	~socketbuf() override;
+
 	socketbuf &operator=(const socketbuf &other) = delete;
 	socketbuf &operator=(socketbuf &&other);
+
+	/// @brief Returns true if the socket is open.
 	bool is_open() const noexcept;
+
+	/// @brief Closes the socket.
 	void close();
 
 protected:
