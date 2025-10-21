@@ -75,7 +75,7 @@ int main(void)
 ```
 ## Build
 ```bash
-git clone https://github.com/exend/netcore.git
+git clone --recurse-submodules https://github.com/exend/netcore.git
 cd netcore
 cmake -B build
 cmake --build build
